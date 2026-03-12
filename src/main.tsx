@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import ScrollToTop from "./ScrollToTop";
 import './index.css';
 import './App.css';
 import App from './App.tsx'
@@ -11,40 +12,19 @@ import Animation from './components/Animation.tsx';
 import ErrorPage from './components/ErrorPage.tsx';
 import AboutUs from './components/AboutUs.tsx';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/Vizualtec/',
-    element: <App />,
-  },
-  {
-    path: '/Vizualtec/Architecture/',
-    element: <Architecture />,
-  },
-  {
-    path: '/Vizualtec/Interior/',
-    element: <Interior />,
-  },
-  {
-    path: '/Vizualtec/VR/',
-    element: <VR />,
-  },
-  {
-    path: '/Vizualtec/Animation/',
-    element: <Animation />,
-  },
-   {
-    path: "/Vizualtec/About/",
-    element: <AboutUs />,
-  }
-]);
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+     <HashRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<App />} errorElement={<ErrorPage />} />
+        <Route path="/architecture" element={<Architecture />} />
+        <Route path="/interior" element={<Interior />} />
+        <Route path="/vr" element={<VR />} />
+        <Route path="/animation" element={<Animation />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
+    </HashRouter>
   </StrictMode>,
 )
 
